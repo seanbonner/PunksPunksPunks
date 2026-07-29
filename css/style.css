@@ -1,6 +1,7 @@
 :root {
   --hub-width: 420px;
   --logo-height: 42px;
+  --wordmark-size: 44px;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -57,6 +58,20 @@ a { color: inherit; }
   max-width: 100%;
 }
 
+/* PunkFinder has no wordmark logo — render it as text in the PunkFinder site's
+   own font (IBM Plex Sans bold), sized to sit alongside the other wordmarks. */
+.hub__wordmark {
+  font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 700;
+  font-size: var(--wordmark-size);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: #000;
+  white-space: nowrap;
+}
+
+.hub__wordmark .dot { color: #c4441a; }
+
 .hub__about {
   margin: 0;
   font-size: 0.95rem;
@@ -74,5 +89,6 @@ a { color: inherit; }
   :root {
     --hub-width: 320px;
     --logo-height: 32px;
+    --wordmark-size: 34px;
   }
 }
