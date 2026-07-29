@@ -1,7 +1,7 @@
 :root {
   --hub-width: 420px;
   --logo-height: 42px;
-  --wordmark-size: 44px;
+  --wordmark-size: 56px;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -89,6 +89,6 @@ a { color: inherit; }
   :root {
     --hub-width: 320px;
     --logo-height: 32px;
-    --wordmark-size: 34px;
+    --wordmark-size: 42px;
   }
 }
