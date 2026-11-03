@@ -1,0 +1,12 @@
+{
+  "name": "punkspunkspunks",
+  "version": "0.1.0",
+  "description": "Hub for the PunksPunksPunks family of CryptoPunks research sites (punkspunkspunks.com).",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "sync-data": "node scripts/sync-data.mjs",
+    "build": "node build.mjs",
+    "preview": "node build.mjs && node scripts/serve.mjs"
+  }
+}
