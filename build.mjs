@@ -25,6 +25,8 @@ rmSync(OUT, { recursive: true, force: true });
 mkdirSync(OUT, { recursive: true });
 writeFileSync(join(OUT, "index.html"), html.replace("__HUB_DATA__", data));
 cpSync(join(ROOT, "images"), join(OUT, "images"), { recursive: true });
+// Sold Punks live sales feed at /sales: fully client-side, copied as-is.
+cpSync(join(ROOT, "src", "sales"), join(OUT, "sales"), { recursive: true });
 for (const f of ["favicon.svg", "favicon.ico", "favicon-32.png", "favicon-16.png", "apple-touch-icon.png", "icon-512.png"]) {
   cpSync(join(ROOT, f), join(OUT, f));
 }

@@ -22,6 +22,19 @@ No dependencies; nothing to install.
 `images/` plus the root icon files (favicon.svg, favicon.ico, favicon-32.png,
 favicon-16.png, apple-touch-icon.png, icon-512.png) into `_site/`.
 
+## /sales (Sold Punks)
+
+`src/sales/` is the Sold Punks live feed: every punk sold in the last 24h, copied
+as-is to `_site/sales/` by `build.mjs`. Entirely client-side: native sales from
+`indexer.punksmarket.app/sales`, wrapped-punk sales priced by decoding Seaport
+`OrderFulfilled` logs from receipts (public RPC). Raw V1 `PunkBought` rows with
+buyer == seller are Punks Market's intermediary fix; `sales.js` recovers the
+real buyer and seller.
+
+Soft launch: the page carries `noindex` and the hub front page doesn't link to
+it yet. Remove both when it's announced. Imports use absolute `/sales/...` paths
+because Pages serves the page at `/sales` without a trailing slash.
+
 ## Notes
 
 - `scripts/sync-data.mjs` reads BurnedPunks/punks, MuseumPunks/punks and
