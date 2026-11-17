@@ -183,6 +183,10 @@ export async function loadSales({ hours = 24, now = Date.now() / 1000 } = {}) {
   });
   sales.sort((a, b) => b.ts - a.ts);
 
+  // Third-party data ends up in HTML: keep only well-formed addresses and hashes.
+  const ADDR = /^0x[0-9a-f]{40}$/i, HASH = /^0x[0-9a-f]{64}$/i;
+  sales = sales.filter((s) => ADDR.test(s.buyer) && ADDR.test(s.seller) && HASH.test(s.tx) && Number.isInteger(s.punk));
+
   await addHistory(sales);
   await addNames(sales);
   return sales;
@@ -204,8 +208,8 @@ async function addHistory(sales) {
     if (s.needsV1Fix) {
       const hop = evs.find((e) => e.tx_hash === s.tx && e.source_event === "PunkTransfer" && e.from === s.buyer);
       const listed = evs.find((e) => e.source_event === "PunkOffered" && e.tx_hash !== s.tx);
-      if (hop) s.buyer = hop.to;
-      if (listed) s.seller = listed.from;
+      if (hop && /^0x[0-9a-f]{40}$/i.test(hop.to)) s.buyer = hop.to;
+      if (listed && /^0x[0-9a-f]{40}$/i.test(listed.from)) s.seller = listed.from;
       s.venue = "V1 market (intermediary)";
     }
 

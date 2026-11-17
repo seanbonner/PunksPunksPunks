@@ -100,7 +100,7 @@ let SALES = [];
 
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const short = (a) => a.slice(0, 6) + "..." + a.slice(-4);
-const who = (addr, name) => `<a href="https://evm.now/address/${addr}" target="_blank" rel="noopener">${esc(name || short(addr))}</a>`;
+const who = (addr, name) => `<a href="https://evm.now/address/${esc(addr)}" target="_blank" rel="noopener">${esc(name || short(addr))}</a>`;
 const windowLabel = HOURS === 24 ? "24 hours" : HOURS % 24 === 0 ? `${HOURS / 24} days` : `${HOURS} hours`;
 document.getElementById("s-count-l").textContent = `sales in ${windowLabel}`;
 
@@ -123,7 +123,7 @@ function render() {
         <div class="parties">Sold by ${who(s.seller, s.sellerName)} to ${who(s.buyer, s.buyerName)}</div>
         ${s.note ? `<div class="note">${esc(s.note[0].toUpperCase() + s.note.slice(1))}.</div>` : ""}
       </div>
-      <div class="price"><b>${eth(s.wei)} ${s.currency === "WETH" ? "WETH" : "ETH"}</b><span>${usd}</span><a href="https://evm.now/tx/${s.tx}" target="_blank" rel="noopener">${span(Date.now() / 1000 - s.ts)} ago</a></div>
+      <div class="price"><b>${eth(s.wei)} ${s.currency === "WETH" ? "WETH" : "ETH"}</b><span>${usd}</span><a href="https://evm.now/tx/${esc(s.tx)}" target="_blank" rel="noopener">${span(Date.now() / 1000 - s.ts)} ago</a></div>
     </li>`;
   }).join("");
 }
