@@ -33,7 +33,8 @@ real buyer and seller.
 
 Soft launch: the page carries `noindex` and the hub front page doesn't link to
 it yet. Remove both when it's announced. Imports use absolute `/sales/...` paths
-because Pages serves the page at `/sales` without a trailing slash.
+so they resolve no matter which URL form serves the page (Pages redirects
+`/sales` to `/sales/`).
 
 ## Notes
 
